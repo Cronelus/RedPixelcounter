@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context="lazinth.nex.cameraintent.CameraIntentActivity">
+
+    <ImageView
+        android:id="@+id/capturePhotoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/buttonContainer"
+        android:contentDescription="@string/view_of_reduced_image" />
+ <!--
+useless Comment
+-->
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:drawable/bottom_bar"
+        android:orientation="horizontal"
+        android:paddingBottom="1.0dip"
+        android:paddingLeft="4.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingTop="3.0dip"
+        >
+
+        <Button
+            android:id="@+id/photoButton"
+            style="?android:attr/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6.0"
+            android:onClick="takePhoto"
+            android:text="@string/take_photo" />
+
+        <Button
+            android:id="@+id/button"
+            style="?android:attr/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/progress"
+            android:onClick="getRedPixelAmount"/>
+
+        <TextView
+            android:id="@+id/numberOfRedPixels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Camera Intent</string>
+    <string name="view_of_reduced_image">shows reduced image</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="progress">progress</string>
+</resources>
