@@ -7,11 +7,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Matrix;
-import android.support.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.media.ExifInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
@@ -37,8 +37,8 @@ public class CameraIntentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_intent);
 
-        //create new ImageView-variable for the image to show at the top, and then assign the ImageView to our Variable
-        // COde Cleanup to         mPhotoCapturedImageView = (ImageView) findViewById(R.id.capturePhotoImageView);
+        // create new ImageView-variable for the image to show at the top, and then assign the ImageView to our Variable
+        // Code Cleanup to mPhotoCapturedImageView = (ImageView) findViewById(R.id.capturePhotoImageView);
         mPhotoCapturedImageView = findViewById(R.id.capturePhotoImageView);
 
     }
@@ -188,7 +188,8 @@ public class CameraIntentActivity extends AppCompatActivity {
     //second Task: take only the red Pixels and count those with 0.5 or more "strength"
     //first the analogon to takePhoto/onActivity result, were we try to display the amount of red pixels this time
     public void getRedPixelAmount(View view) {
-      count(stainImage());
+        stainImage();
+    // count(stainImage());
 
 
 
@@ -208,20 +209,28 @@ public class CameraIntentActivity extends AppCompatActivity {
         BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
         int cameraImageWidth2 = bmOptions.outWidth;
         int cameraImageHeight2 = bmOptions.outHeight;
+        //        bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();int pixel = bitmap.getPixel(x,y);
     }
 
     // analogous to private Bitmap setReducedImageSize() to produce a red stained image
     private Bitmap stainImage () {
-        BitmapFactory.decodeFile(mImageFileLocation);
-        int mul = 0;
-        int add = 0;
+
+        // BitmapFactory.decodeFile(mImageFileLocation);
+        // int width2 = mPhotoCapturedImageView.getWidth();
+        // int height = mPhotoCapturedImageView.getHeight();
+        // use the color filter to multiply the (alpha and) red with 100% and blue and green with Zero.
+        int mul = 0xFFFF0000;
+        int add = 0x00000000;
         ColorFilter redStainer = new LightingColorFilter(mul, add);
-        
 
-
-
+        mPhotoCapturedImageView.setColorFilter(redStainer);
+        //just to make sure this works:
+        /*       Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        mPhotoCapturedImageView.setImageBitmap(rotatedBitmap);  */
+      /*  Drawable stainedImage = this.mImageFileLocation.;
+        return stainedImage.setColorFilter(redStainer); */
         return BitmapFactory.decodeFile(mImageFileLocation);
-//        bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();int pixel = bitmap.getPixel(x,y);
+
 
     }
 }
