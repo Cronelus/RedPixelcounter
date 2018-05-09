@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -34,6 +35,7 @@ public class CameraIntentActivity extends AppCompatActivity {
     private static final int ACTIVITY_START_CAMERA_APP = 0;
     private ImageView mPhotoCapturedImageView;
     private String mImageFileLocation = "";
+    private TextView mRedPixelNumber;
 
     Drawable stainedImage;
 
@@ -43,8 +45,9 @@ public class CameraIntentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera_intent);
 
         // create new ImageView-variable for the image to show at the top, and then assign the ImageView to our Variable
-        // Code Cleanup to mPhotoCapturedImageView = (ImageView) findViewById(R.id.capturePhotoImageView);
+        // Code Cleanup of mPhotoCapturedImageView = (ImageView) findViewById(R.id.capturePhotoImageView);
         mPhotoCapturedImageView = findViewById(R.id.capturePhotoImageView);
+        TextView mRedPixelNumber = findViewById(R.id.numberOfRedPixels);
 
     }
 
@@ -193,9 +196,13 @@ public class CameraIntentActivity extends AppCompatActivity {
     //second Task: take only the red Pixels and count those with 0.5 or more "strength"
     //first the analogon to takePhoto/onActivity result, were we try to display the amount of red pixels this time
     public void getRedPixelAmount(View view) {
-        countRedPixel(stainImage());
-
+Toast.makeText(this, "progressing...", Toast.LENGTH_SHORT).show();
         // ToDO: display counter somehow
+    //    mRedPixelNumber.setTextColor(Color.GREEN);
+
+    //    int mRedPixelNumberInt = countRedPixel(stainImage());
+
+    //    mRedPixelNumber.setText(Integer.toString(mRedPixelNumberInt));
 
     }
 
@@ -220,7 +227,7 @@ public class CameraIntentActivity extends AppCompatActivity {
     //strobe every single Pixel of the picture.
     // _UNDER CONSTRUCTION_
     // ToDo: Might do that with an reduced size of the image to decrease computing time
-    int countRedPixel (Bitmap bm) {
+     int countRedPixel(Bitmap bm) {
         int count = 0;
 
         final int width = bm.getWidth();
@@ -231,13 +238,16 @@ public class CameraIntentActivity extends AppCompatActivity {
                 int pixel = bm.getPixel(x, y);
 
                 //ToDo find the value, for the threshold
-                if (Color.red(pixel) == 240) {
+                if (Color.red(pixel) > 127 &&
+                    Color.red(pixel) == 0 &&
+                    Color.red(pixel) == 0)
+                {
                     count++;
                 }
             }
         }
+return count;
 
-        return count;
     }
 
     // just to apply the filter
@@ -251,8 +261,11 @@ public class CameraIntentActivity extends AppCompatActivity {
 
        // mPhotoCapturedImageView.setColorFilter(redStainer);
         stainedImage.setColorFilter(redStainer);
-        Bitmap stainedBitmap = ((BitmapDrawable)stainedImage).getBitmap();
-        return stainedBitmap;
+
+        //Code Clean-Up of:
+        //        Bitmap stainedBitmap = ((BitmapDrawable)stainedImage).getBitmap();
+        //        return stainedBitmap;
+        return ((BitmapDrawable)stainedImage).getBitmap();
 
 
     }
