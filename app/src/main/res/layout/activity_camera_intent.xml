@@ -50,12 +50,13 @@ useless Comment
             android:text="@string/progress"
             android:onClick="getRedPixelAmount"/>
 
-        <TextView
+        <EditText
             android:id="@+id/numberOfRedPixels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:layout_weight="0.5"/>
+            android:text="000"
+            android:layout_weight="0.5"
+            android:inputType="numberSigned|numberDecimal" />
     </LinearLayout>
 
 

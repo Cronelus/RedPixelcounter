@@ -18,8 +18,8 @@ import android.support.media.ExifInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -33,11 +33,10 @@ import java.util.Date;
 public class CameraIntentActivity extends AppCompatActivity {
 
     private static final int ACTIVITY_START_CAMERA_APP = 0;
+    Drawable stainedImage;
     private ImageView mPhotoCapturedImageView;
     private String mImageFileLocation = "";
-    private TextView mRedPixelNumber;
-
-    Drawable stainedImage;
+    private EditText mRedPixelNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class CameraIntentActivity extends AppCompatActivity {
         // create new ImageView-variable for the image to show at the top, and then assign the ImageView to our Variable
         // Code Cleanup of mPhotoCapturedImageView = (ImageView) findViewById(R.id.capturePhotoImageView);
         mPhotoCapturedImageView = findViewById(R.id.capturePhotoImageView);
-        TextView mRedPixelNumber = findViewById(R.id.numberOfRedPixels);
+        mRedPixelNumber = findViewById(R.id.numberOfRedPixels);
 
     }
 
@@ -198,32 +197,16 @@ public class CameraIntentActivity extends AppCompatActivity {
     public void getRedPixelAmount(View view) {
 Toast.makeText(this, "progressing...", Toast.LENGTH_SHORT).show();
         // ToDO: display counter somehow
-    //    mRedPixelNumber.setTextColor(Color.GREEN);
+        mRedPixelNumber.setTextColor(Color.rgb(255, 0,0));
+        int mRedPixelNumberInt = 40;
+//        mRedPixelNumberInt = countRedPixel(stainImage());
 
-    //    int mRedPixelNumberInt = countRedPixel(stainImage());
-
-    //    mRedPixelNumber.setText(Integer.toString(mRedPixelNumberInt));
+        mRedPixelNumber.setText(String.valueOf(mRedPixelNumberInt));
 
     }
 
     //analogous to rotateImage which uses the bitmap from the setReducedImageSize method and counts the red pixels
-
-/*    public void count (){
-        int redPixel = 0;
-        Bitmap sBm = ((BitmapDrawable)stainedImage).getBitmap();
-        final int targetImageViewWidth2 = sBm.getWidth();
-        final int targetImageViewHeight2 = sBm.getHeight();
-
-       BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        "dummy"-Load of actual photo just to get the details...
-        bmOptions.inJustDecodeBounds = true;
-
-        BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
-        int cameraImageWidth2 = bmOptions.outWidth;
-        int cameraImageHeight2 = bmOptions.outHeight;
-        //        bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();int pixel = bitmap.getPixel(x,y);
-    }*/
-
+    
     //strobe every single Pixel of the picture.
     // _UNDER CONSTRUCTION_
     // ToDo: Might do that with an reduced size of the image to decrease computing time
