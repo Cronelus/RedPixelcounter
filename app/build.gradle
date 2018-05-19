@@ -4,7 +4,9 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "lazinth.nex.cameraintent"
+        //Defines the minimum API level required to run the app
         minSdkVersion 16
+        //Specifies the API level used to test the app
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
