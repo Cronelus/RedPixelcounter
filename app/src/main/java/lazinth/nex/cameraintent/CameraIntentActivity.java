@@ -93,7 +93,7 @@ public class CameraIntentActivity extends AppCompatActivity {
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 
         if (requestCode ==ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
-            //the if statement is to make sure there is an activity to handle the takePhotoIntent AND the outcoming result is "positive" (which in this case ironically means that the result code is -1 -_-')
+            //the if statement is to make sure there is an activity to handle the takePhotoIntent AND the outcoming result is "positive" 
 /*   to get the thumbnail into the image view:
             //doing sth with the returned "Intent data"/getting the bundle of data
             Bundle extras = data.getExtras();
@@ -113,14 +113,14 @@ public class CameraIntentActivity extends AppCompatActivity {
         }
     }
     //saving the picture to a specified file:
-    // Therefore, the following function is no void but a File Method
+    // Therefore, the following function is no void but a File Method. We need to capture possible exception.
     File createImageFile() throws IOException{
         // String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "Image_" + timeStamp + "_";
         File storageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
-        //create that file now and you need to catch migthly happening exceptions...
+        //create that file now.
 
         File image = File.createTempFile(imageFileName, ".jpg", storageDirectory);
         // got an private String for the image path created on top to save the filepath in.
@@ -128,9 +128,9 @@ public class CameraIntentActivity extends AppCompatActivity {
 
         return image;
     }
-    /*scale Down Image to reduce the Ram amount needed for this application
+    /*scale down the Image to reduce the amount RAM needed for the APP.
     the photo will still be in mPhotoCapturedImageView
-    BitmapFactory gives us the option to resize
+    BitmapFactory gives us the option to resize the picture and save RAM.
      */
     private Bitmap setReducedImageSize(){
 
@@ -144,7 +144,7 @@ public class CameraIntentActivity extends AppCompatActivity {
         int cameraImageWidth = bmOptions.outWidth;
         int cameraImageHeight = bmOptions.outHeight;
 
-        // calculating the scaleFactor with try and catch because sometimes the targetImageView numbers can't be pulled. This then results in an division by zero...
+        // calculating the scaleFactor with try and catch, because sometimes the targetImageView numbers can't be pulled. This then results in an division by zero...
         int scaleFactor = 0;
         try {
             scaleFactor = Math.min(cameraImageWidth/targetImageViewWidth, cameraImageHeight/targetImageViewHeight);
@@ -162,9 +162,9 @@ public class CameraIntentActivity extends AppCompatActivity {
 
 
     }
-    // new method to fix the orientation problem
+    // new method to fix orientation problemes
     private void rotateImage(Bitmap bitmap) {
-        // use the information which brings the image with itself to get its orientation
+        // use the information to get the orientation of the image
         ExifInterface exifInterface = null;
         try {
             exifInterface = new ExifInterface(mImageFileLocation);
