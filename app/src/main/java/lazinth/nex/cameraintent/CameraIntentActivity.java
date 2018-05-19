@@ -206,7 +206,7 @@ Toast.makeText(this, "progressing...", Toast.LENGTH_SHORT).show();
     }
 
     //analogous to rotateImage which uses the bitmap from the setReducedImageSize method and counts the red pixels
-    
+
     //strobe every single Pixel of the picture.
     // _UNDER CONSTRUCTION_
     // ToDo: Might do that with an reduced size of the image to decrease computing time

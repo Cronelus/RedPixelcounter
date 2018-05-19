@@ -3,7 +3,9 @@
     package="lazinth.nex.cameraintent">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <!--
+   We might need to add sth here to support further APIs, too.
+   -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
